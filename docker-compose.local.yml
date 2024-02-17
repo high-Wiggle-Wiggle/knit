@@ -1,0 +1,12 @@
+version: '3'
+
+services:
+  mysql:
+    container_name: matzip.local.db
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_USER: "ggumtle"
+      POSTGRES_PASSWORD: "ggumtle"
+      POSTGRES_DB: "matzip"
+    ports:
+      - "5432:5432"

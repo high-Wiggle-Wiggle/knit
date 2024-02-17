@@ -1,0 +1,108 @@
+spring:
+  profiles:
+    active: local
+
+  jpa:
+    database: postgresql
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    properties:
+      hibernate:
+        format_sql: true
+
+    generate-ddl: true
+    hibernate:
+      ddl-auto: validate
+
+  datasource:
+    url: jdbc:postgresql://${DB_HOST}:${DB_PORT}/${DB_NAME}
+    driver-class-name: org.postgresql.Driver
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+
+  cloud:
+    aws:
+      s3:
+        bucket: ${BUCKET_NAME}
+      stack:
+        auto: false
+      region:
+        static: ${S3_REGION}
+      credentials:
+        instance-profile: true
+        access-key: ${S3_ACCESS_KEY}
+        secret-key: ${S3_SECRET_KEY}
+
+  logging:
+    level:
+      com.amazonaws.util.EC2MetadataUtils: error
+
+  servlet:
+    multipart:
+      max-file-size: 10MB
+---
+spring:
+  config:
+    activate:
+      on-profile: prod
+
+  web:
+    resources:
+      add-mappings: false
+---
+spring:
+  config:
+    activate:
+      on-profile: dev
+
+debug: true
+---
+spring:
+  config:
+    activate:
+      on-profile: local
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/matzip
+    driver-class-name: org.postgresql.Driver
+    username: ggumtle
+    password: ggumtle
+
+  data:
+    redis:
+      host: localhost
+      port: 6379
+      password: ggumtle
+
+debug: true
+---
+spring:
+  config:
+    activate:
+      on-profile: test
+
+  jpa:
+    properties:
+      hibernate:
+        format_sql: true
+
+    generate-ddl: true
+    hibernate:
+      ddl-auto: create
+    defer-datasource-initialization: true
+
+  h2:
+    console:
+      enabled: true
+      path: /h2
+
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:mem:test?MODE=PostgreSQL;CASE_INSENSITIVE_IDENTIFIERS=true;DATABASE_TO_UPPER=false;
+    username: sa
+    password:
+
+debug: true
