@@ -24,10 +24,12 @@ public class Follow extends BaseTimeEntity {
     @Id
     private Long id;
 
+    // 팔로우 당한 사람
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "followee_id", nullable = false)
     private User followee;
 
+    // 팔로우 한 사람
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "follower_id", nullable = false)
     private User follower;
