@@ -3,6 +3,7 @@ package com.ggumtle.ggumtle.presentation.review;
 import com.ggumtle.ggumtle.application.review.ReviewService;
 import com.ggumtle.ggumtle.domain.user.constants.UserConstants;
 import com.ggumtle.ggumtle.presentation.review.dto.request.ReviewRequest;
+import com.ggumtle.ggumtle.presentation.review.dto.response.ReviewListResponse;
 import com.ggumtle.ggumtle.presentation.review.dto.response.SearchReviewResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
@@ -38,5 +39,12 @@ public class ReviewController {
             @RequestParam(required = false) String q
     ) {
         return reviewService.searchReview(q);
+    }
+
+    @GetMapping("/feed")
+    public ReviewListResponse getFeed(
+            @RequestHeader(UserConstants.LOGIN_USER_HEADER) Long userId
+    ) {
+        return reviewService.getReviewList(userId);
     }
 }

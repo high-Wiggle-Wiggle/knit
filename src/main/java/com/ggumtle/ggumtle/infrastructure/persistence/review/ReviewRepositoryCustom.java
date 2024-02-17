@@ -7,4 +7,6 @@ import java.util.List;
 public interface ReviewRepositoryCustom {
 
     List<Review> searchReview(String q);
+
+    List<Review> getFeed(Long userId);
 }

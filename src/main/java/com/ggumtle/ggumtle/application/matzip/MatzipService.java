@@ -4,7 +4,6 @@ import com.ggumtle.ggumtle.domain.matzip.Matzip;
 import com.ggumtle.ggumtle.domain.matzip.service.MatzipFacade;
 import com.ggumtle.ggumtle.infrastructure.persistence.matzip.MatzipRepository;
 import com.ggumtle.ggumtle.presentation.matzip.dto.response.MatzipDetailResponse;
-import com.ggumtle.ggumtle.presentation.matzip.dto.response.MatzipDto;
 import com.ggumtle.ggumtle.presentation.matzip.dto.response.MatzipResponse;
 import com.ggumtle.ggumtle.presentation.matzip.dto.response.SearchMatzipListResponse;
 import lombok.RequiredArgsConstructor;

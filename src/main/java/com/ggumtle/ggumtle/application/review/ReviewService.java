@@ -7,6 +7,7 @@ import com.ggumtle.ggumtle.domain.user.User;
 import com.ggumtle.ggumtle.domain.user.service.UserFacade;
 import com.ggumtle.ggumtle.infrastructure.persistence.review.ReviewRepository;
 import com.ggumtle.ggumtle.presentation.review.dto.request.ReviewRequest;
+import com.ggumtle.ggumtle.presentation.review.dto.response.ReviewListResponse;
 import com.ggumtle.ggumtle.presentation.review.dto.response.ReviewResponse;
 import com.ggumtle.ggumtle.presentation.review.dto.response.SearchReviewResponse;
 import lombok.RequiredArgsConstructor;
@@ -40,6 +41,15 @@ public class ReviewService {
     public SearchReviewResponse searchReview(String q) {
         return new SearchReviewResponse(
                 reviewRepository.searchReview(q) .stream()
+                        .map(ReviewResponse::new)
+                        .toList()
+        );
+    }
+
+    @Transactional(readOnly = true)
+    public ReviewListResponse getReviewList(Long userId) {
+        return new ReviewListResponse(
+                reviewRepository.getFeed(userId).stream()
                         .map(ReviewResponse::new)
                         .toList()
         );
