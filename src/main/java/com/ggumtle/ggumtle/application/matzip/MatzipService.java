@@ -1,5 +1,7 @@
 package com.ggumtle.ggumtle.application.matzip;
 
+import com.ggumtle.ggumtle.domain.matzip.Matzip;
+import com.ggumtle.ggumtle.domain.matzip.service.MatzipFacade;
 import com.ggumtle.ggumtle.infrastructure.persistence.matzip.MatzipRepository;
 import com.ggumtle.ggumtle.presentation.matzip.dto.response.MatzipDetailResponse;
 import com.ggumtle.ggumtle.presentation.matzip.dto.response.MatzipDto;
@@ -14,18 +16,20 @@ import org.springframework.transaction.annotation.Transactional;
 public class MatzipService {
 
     private final MatzipRepository matzipRepository;
+    private final MatzipFacade matzipFacade;
 
     @Transactional(readOnly = true)
     public SearchMatzipListResponse searchMatzip(String q) {
         return new SearchMatzipListResponse(
                 matzipRepository.searchMatzip(q).stream()
-                .map(MatzipResponse::new)
-                .toList()
+                        .map(MatzipResponse::new)
+                        .toList()
         );
     }
 
     @Transactional(readOnly = true)
     public MatzipDetailResponse getMatzip(Long id) {
-        return null;
+        Matzip matzip = matzipFacade.getMatzip(id);
+        return new MatzipDetailResponse(matzip);
     }
 }

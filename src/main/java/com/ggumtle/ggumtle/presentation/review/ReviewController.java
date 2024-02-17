@@ -39,5 +39,4 @@ public class ReviewController {
     ) {
         return reviewService.searchReview(q);
     }
-
 }
