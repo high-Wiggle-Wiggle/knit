@@ -30,4 +30,9 @@ public class FollowService {
 
         followRepository.deleteByFollowerAndFollowee(currentUser, followee);
     }
+
+    @Transactional(readOnly = true)
+    public boolean isFollowing(Long userId, Long followeeId) {
+        return followRepository.isFollowing(userId, followeeId);
+    }
 }

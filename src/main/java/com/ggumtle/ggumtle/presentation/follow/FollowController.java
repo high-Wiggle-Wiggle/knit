@@ -5,6 +5,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -38,5 +39,13 @@ public class FollowController {
             @RequestParam("followee-id") Long followeeId
     ) {
         followService.unfollow(userId, followeeId);
+    }
+
+    @GetMapping
+    public boolean isFollowing(
+            @RequestHeader(LOGIN_USER_HEADER) Long userId,
+            @RequestParam("followee-id") Long followeeId
+    ) {
+        return followService.isFollowing(userId, followeeId);
     }
 }
