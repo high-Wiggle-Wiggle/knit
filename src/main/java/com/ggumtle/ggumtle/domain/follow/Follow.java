@@ -2,12 +2,12 @@ package com.ggumtle.ggumtle.domain.follow;
 
 import com.ggumtle.ggumtle.domain.user.User;
 import com.ggumtle.ggumtle.shared.entity.BaseTimeEntity;
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AccessLevel;
@@ -25,11 +25,11 @@ public class Follow extends BaseTimeEntity {
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @Column(name = "followee_id", nullable = false)
+    @JoinColumn(name = "followee_id", nullable = false)
     private User followee;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @Column(name = "follower_id", nullable = false)
+    @JoinColumn(name = "follower_id", nullable = false)
     private User follower;
 
     public Follow(User followee, User follower) {
