@@ -35,7 +35,6 @@ public class UploadFileService {
 
             amazonS3Client.putObject(request);
         } catch (SdkClientException | IOException e) {
-            e.printStackTrace();
             throw new MatzipException(S3ErrorProperty.FAILED_TO_SAVE);
         }
 

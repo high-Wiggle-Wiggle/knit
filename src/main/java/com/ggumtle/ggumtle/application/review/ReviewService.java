@@ -31,6 +31,7 @@ public class ReviewService {
                 new Review(
                         request.getContent(),
                         request.getStars(),
+                        request.getImageUrl(),
                         matzip,
                         user
                 )

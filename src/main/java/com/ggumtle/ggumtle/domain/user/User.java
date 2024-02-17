@@ -28,6 +28,9 @@ public class User {
     @Column(nullable = false)
     private String name;
 
+    @Column(nullable = false)
+    private String imageUrl;
+
     @OneToMany(mappedBy = "user")
     private List<Review> reviews;
 

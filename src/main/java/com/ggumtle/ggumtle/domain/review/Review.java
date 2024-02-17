@@ -34,6 +34,8 @@ public class Review extends BaseTimeEntity {
     @Column(nullable = false)
     private Integer stars;
 
+    private String imageUrl;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "matzip_id")
     private Matzip matzip;
@@ -42,13 +44,14 @@ public class Review extends BaseTimeEntity {
     @JoinColumn(name = "user_id")
     private User user;
 
-    public Review(String content, Integer stars, Matzip matzip, User user) {
+    public Review(String content, Integer stars, String imageUrl, Matzip matzip, User user) {
         if (!(0 <= stars && stars <= 5)) {
             throw new MatzipException(PostErrorProperty.STARS_NOT_IN_RANGE);
         }
 
         this.content = content;
         this.stars = stars;
+        this.imageUrl = imageUrl;
         this.matzip = matzip;
         this.user = user;
     }

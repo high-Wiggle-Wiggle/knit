@@ -12,4 +12,5 @@ public class ReviewRequest {
     private String content;
     private Integer stars;
     private Long matzipId;
+    private String imageUrl;
 }

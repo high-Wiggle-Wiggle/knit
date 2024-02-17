@@ -10,7 +10,7 @@ import java.util.List;
 public class UserResponse {
 
     private String name;
-
+    private String imageUrl;
     private Integer review;
     private Integer follower;
     private Integer following;
@@ -19,6 +19,7 @@ public class UserResponse {
 
     public UserResponse(User user) {
         this.name = user.getName();
+        this.imageUrl = user.getImageUrl();
         this.review = user.getReviews().size();
         this.follower = user.getFollowers().size();
         this.following = user.getFollowings().size();
