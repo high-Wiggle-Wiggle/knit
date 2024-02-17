@@ -1,12 +1,10 @@
 package com.ggumtle.ggumtle.domain.matzip;
 
-import com.ggumtle.ggumtle.domain.matzip.enums.MatzipType;
 import com.ggumtle.ggumtle.shared.entity.BaseTimeEntity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.AccessLevel;
@@ -19,7 +17,7 @@ import lombok.NoArgsConstructor;
 @Entity
 public class Matzip extends BaseTimeEntity {
 
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     private Long id;
 
@@ -29,12 +27,11 @@ public class Matzip extends BaseTimeEntity {
     @Column(nullable = false)
     private String address;
 
-    @Column(nullable = false)
+    @Column
     private String phoneNumber;
 
     @Column(nullable = false)
-    @Enumerated(EnumType.STRING)
-    private MatzipType type;
+    private String type;
 
     @Column(nullable = false)
     private Double latitude;
@@ -42,12 +39,16 @@ public class Matzip extends BaseTimeEntity {
     @Column(nullable = false)
     private Double longitude;
 
-    public Matzip(String name, String address, String phoneNumber, MatzipType type, Double latitude, Double longitude) {
+    @Column(nullable = false)
+    private String imageUrl;
+
+    public Matzip(String name, String address, String phoneNumber, String type, Double latitude, Double longitude, String imageUrl) {
         this.name = name;
         this.address = address;
         this.phoneNumber = phoneNumber;
         this.type = type;
         this.latitude = latitude;
         this.longitude = longitude;
+        this.imageUrl = imageUrl;
     }
 }

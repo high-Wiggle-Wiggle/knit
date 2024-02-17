@@ -24,20 +24,16 @@ public class Review extends BaseTimeEntity {
     private Long id;
 
     @Column(nullable = false)
-    private String title;
-
-    @Column(nullable = false)
     private String content;
 
     @Column(nullable = false)
     private Integer stars;
 
-    public Review(String title, String content, Integer stars) {
+    public Review(String content, Integer stars) {
         if (!(0 <= stars && stars <= 5)) {
             throw new MatzipException(PostErrorProperty.STARS_NOT_IN_RANGE);
         }
 
-        this.title = title;
         this.content = content;
         this.stars = stars;
     }
