@@ -48,8 +48,8 @@ public class GlobalExceptionHandler {
                 .body(new ErrorResponse(GlobalErrorProperty.BAD_REQUEST, e.getMessage()));
     }
 
-    @ExceptionHandler(MaruException.class)
-    public ResponseEntity<ErrorResponse> handleMaruException(MaruException e) {
+    @ExceptionHandler(MatzipException.class)
+    public ResponseEntity<ErrorResponse> handleMaruException(MatzipException e) {
         return ResponseEntity
                 .status(e.getErrorProperty().getStatus())
                 .body(new ErrorResponse(e.getErrorProperty()));
