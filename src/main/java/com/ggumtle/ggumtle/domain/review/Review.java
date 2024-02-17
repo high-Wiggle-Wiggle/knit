@@ -1,6 +1,6 @@
-package com.ggumtle.ggumtle.domain.post;
+package com.ggumtle.ggumtle.domain.review;
 
-import com.ggumtle.ggumtle.domain.post.error.PostErrorProperty;
+import com.ggumtle.ggumtle.domain.review.error.PostErrorProperty;
 import com.ggumtle.ggumtle.shared.entity.BaseTimeEntity;
 import com.ggumtle.ggumtle.shared.error.MatzipException;
 import jakarta.persistence.Column;
@@ -15,9 +15,9 @@ import lombok.NoArgsConstructor;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@Table(name = "tbl_post")
+@Table(name = "tbl_review")
 @Entity
-public class Post extends BaseTimeEntity {
+public class Review extends BaseTimeEntity {
 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
@@ -32,7 +32,7 @@ public class Post extends BaseTimeEntity {
     @Column(nullable = false)
     private Integer stars;
 
-    public Post(String title, String content, Integer stars) {
+    public Review(String title, String content, Integer stars) {
         if (!(0 <= stars && stars <= 5)) {
             throw new MatzipException(PostErrorProperty.STARS_NOT_IN_RANGE);
         }

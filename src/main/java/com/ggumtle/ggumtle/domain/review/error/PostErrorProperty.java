@@ -1,4 +1,4 @@
-package com.ggumtle.ggumtle.domain.post.error;
+package com.ggumtle.ggumtle.domain.review.error;
 
 import com.ggumtle.ggumtle.shared.error.ErrorProperty;
 import lombok.Getter;
