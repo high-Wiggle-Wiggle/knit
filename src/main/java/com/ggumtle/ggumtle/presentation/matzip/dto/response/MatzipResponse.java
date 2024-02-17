@@ -8,11 +8,9 @@ public class MatzipResponse {
 
     private Long id;
     private String name;
-    private String imageUrl;
 
     public MatzipResponse(Matzip matzip) {
         this.id = matzip.getId();
         this.name = matzip.getName();
-        this.imageUrl = matzip.getImageUrl();
     }
 }
