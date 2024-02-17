@@ -2,7 +2,7 @@ package com.ggumtle.ggumtle.presentation.matzip;
 
 import com.ggumtle.ggumtle.application.matzip.MatzipService;
 import com.ggumtle.ggumtle.presentation.matzip.dto.response.MatzipDetailResponse;
-import com.ggumtle.ggumtle.presentation.matzip.dto.response.SearchMatzipResponse;
+import com.ggumtle.ggumtle.presentation.matzip.dto.response.SearchMatzipListResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,7 +20,7 @@ public class MatzipController {
     private final MatzipService matzipService;
 
     @GetMapping
-    public SearchMatzipResponse searchMatzip(
+    public SearchMatzipListResponse searchMatzip(
             @RequestParam(required = false) String q
     ) {
         return matzipService.searchMatzip(q);

@@ -7,7 +7,7 @@ import java.util.List;
 
 @Getter
 @AllArgsConstructor
-public class SearchMatzipResponse {
+public class SearchMatzipListResponse {
 
     private List<MatzipResponse> matzipList;
 }

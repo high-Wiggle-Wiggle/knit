@@ -1,15 +1,19 @@
 package com.ggumtle.ggumtle.domain.matzip;
 
+import com.ggumtle.ggumtle.domain.review.Review;
 import com.ggumtle.ggumtle.shared.entity.BaseTimeEntity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -42,6 +46,9 @@ public class Matzip extends BaseTimeEntity {
     @Column(nullable = false)
     private String imageUrl;
 
+    @OneToMany(mappedBy = "matzip")
+    private List<Review> reviews;
+
     public Matzip(String name, String address, String phoneNumber, String type, Double latitude, Double longitude, String imageUrl) {
         this.name = name;
         this.address = address;
@@ -50,5 +57,16 @@ public class Matzip extends BaseTimeEntity {
         this.latitude = latitude;
         this.longitude = longitude;
         this.imageUrl = imageUrl;
+    }
+
+    public double getAverageStar() {
+        return reviews.stream()
+                .mapToDouble(Review::getStars)
+                .average()
+                .orElse(0);
+    }
+
+    public int getReviewCounts() {
+        return reviews.size();
     }
 }
