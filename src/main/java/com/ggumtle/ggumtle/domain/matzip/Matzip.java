@@ -36,10 +36,18 @@ public class Matzip extends BaseTimeEntity {
     @Enumerated(EnumType.STRING)
     private MatzipType type;
 
-    public Matzip(String name, String address, String phoneNumber, MatzipType type) {
+    @Column(nullable = false)
+    private Double latitude;
+
+    @Column(nullable = false)
+    private Double longitude;
+
+    public Matzip(String name, String address, String phoneNumber, MatzipType type, Double latitude, Double longitude) {
         this.name = name;
         this.address = address;
         this.phoneNumber = phoneNumber;
         this.type = type;
+        this.latitude = latitude;
+        this.longitude = longitude;
     }
 }
